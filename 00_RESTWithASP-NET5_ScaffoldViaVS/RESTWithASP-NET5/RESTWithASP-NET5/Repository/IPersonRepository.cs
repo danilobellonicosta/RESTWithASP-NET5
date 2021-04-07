@@ -1,9 +1,9 @@
 ﻿using RESTWithASP_NET5.Models;
 using System.Collections.Generic;
 
-namespace RESTWithASP_NET5.Services
+namespace RESTWithASP_NET5.Repository
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
         Person Create(Person person);
         Person FindByID(long id);
