@@ -1,144 +1,128 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using RESTWithASP_NET5.Models;
+using RESTWithASP_NET5.Services;
 
 namespace RESTWithASP_NET5.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
+        private IPersonService _personService;
 
-        public PersonController(ILogger<PersonController> logger)
+        public PersonController(ILogger<PersonController> logger, IPersonService personService)
         {
             _logger = logger;
+            _personService = personService;
         }
 
-        [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Sum(string firstNumber, string secondNumber)
+        [HttpGet()]
+        public IActionResult Get()
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
-
-                return Ok(sum.ToString());
-            }
-
-            return BadRequest("Invalid Input.");
+            return Ok(_personService.FindAll());
         }
 
-        [HttpGet("sub/{firstNumber}/{secondNumber}")]
-        public IActionResult Sub(string firstNumber, string secondNumber)
+        [HttpGet("{id}")]
+        public IActionResult Get(long id)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sub = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+            var person = _personService.FindByID(id);
 
-                return Ok(sub.ToString());
-            }
+            if (person != null)
+                return Ok(person);
 
-            return BadRequest("Invalid Input.");
+            return NotFound();
         }
 
-        [HttpGet("multi/{firstNumber}/{secondNumber}")]
-        public IActionResult Multi(string firstNumber, string secondNumber)
+        [HttpPost()]
+        public IActionResult Post([FromBody] Person person)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var sub = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
-
-                return Ok(sub.ToString());
-            }
-
-            return BadRequest("Invalid Input.");
+            if (person == null)
+                return BadRequest();
+            else
+                return Ok(_personService.Create(person));
         }
 
-        [HttpGet("div/{firstNumber}/{secondNumber}")]
-        public IActionResult Div(string firstNumber, string secondNumber)
+        [HttpPut()]
+        public IActionResult Put([FromBody] Person person)
         {
-
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                if (ValidDivOperation(firstNumber, secondNumber))
-                {
-                    var sub = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
-
-                    return Ok(sub.ToString());
-                }
-                else
-                    return BadRequest("Invalid Operation. First number can't be zero.");
-
-            }
-
-            return BadRequest("Invalid Input.");
+            if (person == null)
+                return BadRequest();
+            else
+                return Ok(_personService.Update(person));
         }
 
-        [HttpGet("media/{firstNumber}/{secondNumber}")]
-        public IActionResult Media(string firstNumber, string secondNumber)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
-            {
-                var media = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber)) / 2;
+            _personService.Delete(id);
 
-                return Ok(media.ToString());
-            }
-
-            return BadRequest("Invalid Input.");
+            return NoContent();
         }
 
-        [HttpGet("sqrt/{firstNumber}")]
-        public IActionResult Sqrt(string firstNumber)
-        {
-            if (IsNumeric(firstNumber))
-            {
-                var sqrt = Math.Sqrt(ConvertToDouble(firstNumber));
+        //[HttpGet("media/{firstNumber}/{secondNumber}")]
+        //public IActionResult Media(string firstNumber, string secondNumber)
+        //{
+        //    if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+        //    {
+        //        var media = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber)) / 2;
 
-                return Ok(sqrt.ToString());
-            }
+        //        return Ok(media.ToString());
+        //    }
 
-            return BadRequest("Invalid Input.");
-        }
+        //    return BadRequest("Invalid Input.");
+        //}
 
-        private bool IsNumeric(string strNumber)
-        {
-            double number;
-            bool isNumber = double.TryParse(strNumber,
-                                            System.Globalization.NumberStyles.Any,
-                                            System.Globalization.NumberFormatInfo.InvariantInfo,
-                                            out number);
-            return isNumber;
-        }
+        //[HttpGet("sqrt/{firstNumber}")]
+        //public IActionResult Sqrt(string firstNumber)
+        //{
+        //    if (IsNumeric(firstNumber))
+        //    {
+        //        var sqrt = Math.Sqrt(ConvertToDouble(firstNumber));
 
-        private double ConvertToDouble(string strNumber)
-        {
-            double doubleValue;
+        //        return Ok(sqrt.ToString());
+        //    }
 
-            if (double.TryParse(strNumber, out doubleValue))
-                return doubleValue;
+        //    return BadRequest("Invalid Input.");
+        //}
 
-            return 0;
-        }
+        //private bool IsNumeric(string strNumber)
+        //{
+        //    double number;
+        //    bool isNumber = double.TryParse(strNumber,
+        //                                    System.Globalization.NumberStyles.Any,
+        //                                    System.Globalization.NumberFormatInfo.InvariantInfo,
+        //                                    out number);
+        //    return isNumber;
+        //}
 
-        private decimal ConvertToDecimal(string strNumber)
-        {
-            decimal decimalValue;
+        //private double ConvertToDouble(string strNumber)
+        //{
+        //    double doubleValue;
 
-            if (decimal.TryParse(strNumber, out decimalValue))
-                return decimalValue;
+        //    if (double.TryParse(strNumber, out doubleValue))
+        //        return doubleValue;
 
-            return 0;
-        }
+        //    return 0;
+        //}
 
-        private bool ValidDivOperation(string firstNumber, string secondNumber)
-        {
-            if (ConvertToDecimal(firstNumber) == 0 && ConvertToDecimal(secondNumber) > 0)
-                return false;
+        //private decimal ConvertToDecimal(string strNumber)
+        //{
+        //    decimal decimalValue;
 
-            return true;
-        }
+        //    if (decimal.TryParse(strNumber, out decimalValue))
+        //        return decimalValue;
+
+        //    return 0;
+        //}
+
+        //private bool ValidDivOperation(string firstNumber, string secondNumber)
+        //{
+        //    if (ConvertToDecimal(firstNumber) == 0 && ConvertToDecimal(secondNumber) > 0)
+        //        return false;
+
+        //    return true;
+        //}
     }
 }
