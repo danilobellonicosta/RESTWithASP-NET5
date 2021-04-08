@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using RESTWithASP_NET5.Models.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RESTWithASP_NET5.Models
 {
     [Table("person")]
-    public class Person
+    public class Person : BaseEntity
     {
-        [Column("id")]
-        public long Id { get; set; }
-
         [Column("first_name")]
         public string FirstName { get; set; }
 

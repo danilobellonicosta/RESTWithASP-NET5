@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RESTWithASP_NET5.Models.Context;
 using RESTWithASP_NET5.Business;
 using RESTWithASP_NET5.Business.Implementations;
-using RESTWithASP_NET5.Repository;
-using RESTWithASP_NET5.Repository.Implementations;
+using RESTWithASP_NET5.Models.Context;
+using RESTWithASP_NET5.Repository.Generic;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace RESTWithASP_NET5
             Configuration = configuration;
             Environment = environment;
 
-            Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+            ConfigureLogger();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -32,23 +31,14 @@ namespace RESTWithASP_NET5
         {
             services.AddControllers();
 
-            var connection = Configuration["MySQLConnection:MySQLConnectionString"];
-            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
+            //Configure db connection
+            ConfigureDbContext(services);
 
-            if (Environment.IsDevelopment())
-            {
-                MigrateDatabase(connection);
-            }
-
+            //Configure Api Version
             services.AddApiVersioning();
 
-            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
-            services.AddScoped<IBookBusiness, BookBusinessImplementation>();
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+            DependencyInjection(services);
         }
-
-        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -70,6 +60,11 @@ namespace RESTWithASP_NET5
             });
         }
 
+        private void ConfigureLogger()
+        {
+            Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+        }
+
         private void MigrateDatabase(string connection)
         {
             try
@@ -89,6 +84,23 @@ namespace RESTWithASP_NET5
                 Log.Error("Database migration failed. Details: " + ex.Message);
                 throw;
             }
+        }
+    
+        private void ConfigureDbContext(IServiceCollection services)
+        {
+            var connection = Configuration["MySQLConnection:MySQLConnectionString"];
+            services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
+
+            if (Environment.IsDevelopment())
+                MigrateDatabase(connection);
+        }
+
+        private void DependencyInjection(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            services.AddScoped<IBookBusiness, BookBusinessImplementation>();
         }
     }
 }

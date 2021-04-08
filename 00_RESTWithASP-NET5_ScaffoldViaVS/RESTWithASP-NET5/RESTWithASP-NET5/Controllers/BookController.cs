@@ -28,10 +28,10 @@ namespace RESTWithASP_NET5.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var person = _bookService.FindByID(id);
+            var book = _bookService.FindByID(id);
 
-            if (person != null)
-                return Ok(person);
+            if (book != null)
+                return Ok(book);
 
             return NotFound();
         }

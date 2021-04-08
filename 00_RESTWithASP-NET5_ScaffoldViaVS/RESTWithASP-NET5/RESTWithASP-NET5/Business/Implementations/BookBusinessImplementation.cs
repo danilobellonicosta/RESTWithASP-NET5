@@ -1,14 +1,14 @@
 ﻿using RESTWithASP_NET5.Models;
-using RESTWithASP_NET5.Repository;
+using RESTWithASP_NET5.Repository.Generic;
 using System.Collections.Generic;
 
 namespace RESTWithASP_NET5.Business.Implementations
 {
     public class BookBusinessImplementation : IBookBusiness
     {
-        private readonly IBookRepository _repository;
+        private readonly IRepository<Book> _repository;
 
-        public BookBusinessImplementation(IBookRepository repository)
+        public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }
