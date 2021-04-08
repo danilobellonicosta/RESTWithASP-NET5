@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RESTWithASP_NET5.Business;
-using RESTWithASP_NET5.Models;
+using RESTWithASP_NET5.Data.VO;
 
 namespace RESTWithASP_NET5.Controllers
 {
@@ -37,7 +37,7 @@ namespace RESTWithASP_NET5.Controllers
         }
 
         [HttpPost()]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO book)
         {
             if (book == null)
                 return BadRequest();
@@ -46,7 +46,7 @@ namespace RESTWithASP_NET5.Controllers
         }
 
         [HttpPut()]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookVO book)
         {
             if (book == null)
                 return BadRequest();

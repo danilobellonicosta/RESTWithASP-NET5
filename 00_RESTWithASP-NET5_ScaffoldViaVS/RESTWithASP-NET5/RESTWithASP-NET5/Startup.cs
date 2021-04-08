@@ -4,8 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using RESTWithASP_NET5.Business;
 using RESTWithASP_NET5.Business.Implementations;
+using RESTWithASP_NET5.Hypermidia.Enricher;
+using RESTWithASP_NET5.Hypermidia.Filters;
 using RESTWithASP_NET5.Models.Context;
 using RESTWithASP_NET5.Repository.Generic;
 using Serilog;
@@ -34,10 +37,27 @@ namespace RESTWithASP_NET5
             //Configure db connection
             ConfigureDbContext(services);
 
+            //Configure Content Negotiation
+            //ConfigureContentNegotiation(services);
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptions);
             //Configure Api Version
             services.AddApiVersioning();
 
             DependencyInjection(services);
+        }
+
+        private void ConfigureContentNegotiation(IServiceCollection services)
+        {
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+
+            }).AddXmlSerializerFormatters();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +77,7 @@ namespace RESTWithASP_NET5
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id}");
             });
         }
 
@@ -92,7 +113,10 @@ namespace RESTWithASP_NET5
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
             if (Environment.IsDevelopment())
+            {
                 MigrateDatabase(connection);
+
+            }
         }
 
         private void DependencyInjection(IServiceCollection services)
