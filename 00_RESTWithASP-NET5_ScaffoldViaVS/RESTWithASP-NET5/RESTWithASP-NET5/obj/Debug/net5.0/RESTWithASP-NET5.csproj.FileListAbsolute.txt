@@ -45,3 +45,7 @@ C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NE
 C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Serilog.Sinks.Console.dll
 C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
 C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Zoreia\Desktop\Code\RESTWithASP-NET5\RESTWithASP-NET5\00_RESTWithASP-NET5_ScaffoldViaVS\RESTWithASP-NET5\RESTWithASP-NET5\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
