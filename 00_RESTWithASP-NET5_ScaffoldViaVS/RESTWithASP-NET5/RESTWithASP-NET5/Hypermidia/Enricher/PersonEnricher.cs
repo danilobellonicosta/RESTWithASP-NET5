@@ -37,6 +37,13 @@ namespace RESTWithASP_NET5.Hypermidia.Enricher
             });
             content.Links.Add(new HyperMediaLink()
             {
+                Action = HttpActionVerb.PATCH,
+                href = link,
+                Rel = RelationType.self,
+                Type = ResponseTypeFormat.DefaultPatch
+            });
+            content.Links.Add(new HyperMediaLink()
+            {
                 Action = HttpActionVerb.DELETE,
                 href = link,
                 Rel = RelationType.self,

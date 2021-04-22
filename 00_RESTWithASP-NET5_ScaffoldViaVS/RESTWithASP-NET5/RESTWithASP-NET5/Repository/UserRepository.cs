@@ -22,12 +22,26 @@ namespace RESTWithASP_NET5.Repository
             return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
         }
 
+        public User ValidateCredentials(string userName)
+        {
+            return _context.Users.SingleOrDefault(u => (u.UserName == userName));
+        }
+
         private string ComputeHash(string input, SHA256CryptoServiceProvider algorithm)
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(input);
             byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
 
             return BitConverter.ToString(hashedBytes);
+        }
+
+        public bool RevokeToken(string userName)
+        {
+            var user = _context.Users.SingleOrDefault(u => (u.UserName == userName));
+            if (user is null) return false;
+            user.RefreshToken = null;
+            _context.SaveChanges();
+            return true;
         }
 
         public User RefreshUserInfo(User user)

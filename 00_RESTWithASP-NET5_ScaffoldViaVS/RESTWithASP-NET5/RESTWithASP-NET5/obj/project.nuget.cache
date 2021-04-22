@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+BZA8YFEzamtqr9fNNRiwkIeN5WtK0bVQTMCk3tg6u8UUMC/5qGekWsCyZ13icrf/1pPbbpk9NZIunxWWESHag==",
+  "dgSpecHash": "tINtJIo0gwALVb4q6jtBAMD4Y5w/8yy7w72eYitoweXIAOVXmqtPW2hrQPpb7iVGP7nGGi+gzvMGcEcioyN84A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
+  "projectFilePath": "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zoreia\\.nuget\\packages\\evolve\\3.0.0\\evolve.3.0.0.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -58,6 +58,7 @@
     "C:\\Users\\Zoreia\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Zoreia\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\mysqlconnector\\0.69.9\\mysqlconnector.0.69.9.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Zoreia\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.2.4\\pomelo.entityframeworkcore.mysql.3.2.4.nupkg.sha512",

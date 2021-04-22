@@ -23,15 +23,15 @@ namespace RESTWithASP_NET5.Controllers
             _personService = personService;
         }
 
-        [HttpGet()]
+        [HttpGet("{sortDirection}/{pageSize}/{page}")]
         [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
         [ProducesResponseType((204))]
         [ProducesResponseType((400))]
         [ProducesResponseType((401))]
         [TypeFilter(typeof(HyperMediaFilter))]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] string name, string sortDirection, int pageSize, int page)
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personService.FindWithPagedSearch(name, sortDirection, pageSize, page));
         }
 
         [HttpGet("{id}")]
@@ -43,6 +43,22 @@ namespace RESTWithASP_NET5.Controllers
         public IActionResult Get(long id)
         {
             var person = _personService.FindByID(id);
+
+            if (person != null)
+                return Ok(person);
+
+            return NotFound();
+        }
+
+        [HttpGet("findPersonByName")]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType((204))]
+        [ProducesResponseType((400))]
+        [ProducesResponseType((401))]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Get([FromQuery] string firstName, [FromQuery] string secondName)
+        {
+            var person = _personService.FindByName(firstName, secondName);
 
             if (person != null)
                 return Ok(person);
@@ -74,6 +90,19 @@ namespace RESTWithASP_NET5.Controllers
                 return BadRequest();
             else
                 return Ok(_personService.Update(person));
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType((204))]
+        [ProducesResponseType((400))]
+        [ProducesResponseType((401))]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Patch(long id)
+        {
+            var person = _personService.Disable(id);
+
+            return Ok(person);
         }
 
         [HttpDelete("{id}")]

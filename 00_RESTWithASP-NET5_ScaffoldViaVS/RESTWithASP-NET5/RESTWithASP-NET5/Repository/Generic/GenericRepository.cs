@@ -9,7 +9,7 @@ namespace RESTWithASP_NET5.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly MySQLContext _context;
+        protected MySQLContext _context;
         private DbSet<T> _dataset;
 
         public GenericRepository(MySQLContext context)
@@ -89,6 +89,28 @@ namespace RESTWithASP_NET5.Repository.Generic
         private bool Exists(long id)
         {
             return _dataset.Any(p => p.Id.Equals(id));
+        }
+
+        public List<T> FindWithPagedSearch(string query)
+        {
+            return _dataset.FromSqlRaw<T>(query).ToList();
+        }
+
+        public int GetCount(string query)
+        {
+            var result = string.Empty;
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    result = command.ExecuteScalar().ToString();
+                }
+            }
+            return int.Parse(result);
         }
     }
 }

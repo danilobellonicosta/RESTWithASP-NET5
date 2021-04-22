@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj": {}
+    "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj": {
+    "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
+        "projectUniqueName": "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
         "projectName": "RESTWithASP-NET5",
-        "projectPath": "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
+        "projectPath": "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\RESTWithASP-NET5.csproj",
         "packagesPath": "C:\\Users\\Zoreia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zoreia\\Desktop\\Code\\RESTWithASP-NET5\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\obj\\",
+        "outputPath": "C:\\Users\\Zoreia\\Desktop\\Code\\ApiREST\\RESTWithASP-NET5\\00_RESTWithASP-NET5_ScaffoldViaVS\\RESTWithASP-NET5\\RESTWithASP-NET5\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Zoreia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.13, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[3.2.4, )"
@@ -95,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

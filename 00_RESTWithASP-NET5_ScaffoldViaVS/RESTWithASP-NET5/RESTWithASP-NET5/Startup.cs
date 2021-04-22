@@ -148,11 +148,11 @@ namespace RESTWithASP_NET5
             var connection = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
-            if (Environment.IsDevelopment())
-            {
-                MigrateDatabase(connection);
+            //if (Environment.IsDevelopment())
+            //{
+            //    MigrateDatabase(connection);
 
-            }
+            //}
         }
 
         //private void ConfigureContentNegotiation(IServiceCollection services)
@@ -199,6 +199,7 @@ namespace RESTWithASP_NET5
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
             services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             services.AddTransient<ITokenService, TokenService>();
         }
